@@ -1,0 +1,16 @@
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_eks_cluster" "my_cluster" {
+  name     = "weather-cluster"
+  role_arn = "arn:aws:iam::OUR_IAM_ROLE"
+
+  vpc_config {
+    subnet_ids = ["subnet-123456", "subnet-789012"]
+  }
+}
+
+output "cluster_endpoint" {
+  value = aws_eks_cluster.my_cluster.endpoint
+}

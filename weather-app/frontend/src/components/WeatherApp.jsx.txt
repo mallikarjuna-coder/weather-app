@@ -1,0 +1,22 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const WeatherApp = () => {
+    const [city, setCity] = useState('');
+    const [weather, setWeather] = useState(null);
+
+    const fetchWeather = async () => {
+        const response = await axios.get(`/api/weather?city=${city}`);
+        setWeather(response.data);
+    };
+
+    return (
+        <div>
+            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Enter city" />
+            <button onClick={fetchWeather}>Get Weather</button>
+            {weather && <div>{JSON.stringify(weather)}</div>}
+        </div>
+    );
+};
+
+export default WeatherApp;

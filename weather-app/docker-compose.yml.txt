@@ -1,0 +1,16 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./weather-app
+    ports:
+      - "3000:80"
+  backend:
+    build:
+      context: ./weather-backend
+    ports:
+      - "5000:5000"
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
